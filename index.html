@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Demo Azure Cognitive Service</title>
+    </head>
+    <body>
+        <input type="text" id="imgImput" value="https://i0.statig.com.br/bancodeimagens/5w/6r/ep/5w6rep16o2e497c3x5n8ydhi0.jpg" />
+        <input type="button" id="btn" value="Analisar Imagem" />
+        <br />
+        <img src="" id="img" />
+
+        <script src="node_modules/axios/dist/axios.min.js"></script>
+        <script>
+            const imgInput = document.getElementById('imgImput')
+            const img = document.getElementById('img')
+            const btn = document.getElementById('btn')
+            const key = 'xxxxx'
+            const azure = axios.create({
+                baseURL:'https://brazilsouth.api.cognitive.microsoft.com/vision/v1.0/analyze',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Ocp-Apim-Subscription-Key': key
+                }
+            })
+
+            imgInput.addEventListener('blur',() => {
+                img.src = imgInput.value
+            })
+
+            btn.addEventListener('click', () => {
+                const url = '?visualFeatures=Adult,Faces,Categories,Description,Color&details=&lamguage=en'
+                azure
+                    .post(url,{
+                        url: imgInput.value
+                    })
+                    .then(data => console.log(data))
+            })
+        </script>
+    </body>
+</html>

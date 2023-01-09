@@ -10,10 +10,12 @@
 
         <script src="node_modules/axios/dist/axios.min.js"></script>
         <script>
+            REACT_APP_API_ENDPOINT="https://cognitive-services-exploration.cognitiveservices.azure.com"
+REACT_APP_API_KEY="4ad19e6b10284fea865126c534d8f541"
             const imgInput = document.getElementById('imgImput')
             const img = document.getElementById('img')
             const btn = document.getElementById('btn')
-            const key = 'xxxxx'
+            const key = '4ad19e6b10284fea865126c534d8f541'
             const azure = axios.create({
                 baseURL:'https://brazilsouth.api.cognitive.microsoft.com/vision/v1.0/analyze',
                 headers: {
